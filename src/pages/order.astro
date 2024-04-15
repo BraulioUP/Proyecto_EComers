@@ -1,63 +1,58 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FooterLogin from "../components/FooterLogin.astro";
 ---
 
-<Layout title="" />
-<div class="container mx-auto mt-8">
-  <div class="flex flex-col lg:flex-row items-center lg:items-start">
+<Layout title="Model Y - A New Era of Electric">
+  <div class="relative h-screen overflow-hidden bg-black">
     <!-- Image Section -->
-    <div class="flex-1">
-      <img
-        src="path_to_your_car_image.jpg"
-        alt="Model Y"
-        class="w-full lg:w-3/5 rounded-lg shadow-lg"
-      />
-    </div>
+    <img
+      src="image-1.png"
+      alt="Model Y"
+      class="absolute inset-0 object-cover w-full h-full"
+    />
 
-    <!-- Details Section -->
-    <div class="flex-1 mt-8 lg:mt-0 lg:ml-8">
-      <div class="text-right">
-        <!-- Price and Savings -->
-        <div class="text-2xl font-bold">$41,150 Vehicle Price</div>
-        <div class="text-lg text-gray-600">
-          Eligible for $7,500 EV Lease Incentive and Business Tax Credit
-        </div>
-        <div class="text-lg">$37,550 After Probable Savings</div>
+    <!-- Overlay Section -->
+    <div class="relative z-10 h-full flex flex-col justify-between">
+      <!-- Details Section -->
 
-        <!-- Vehicle Specs -->
-        <div class="mt-8">
-          <div class="text-4xl font-bold">Model Y</div>
-          <div class="text-lg">Model Y Rear-Wheel Drive</div>
-          <ul class="mt-4">
-            <li class="flex justify-between">
-              <span class="font-medium">Range (est.):</span>
-              <span>242 mi</span>
-            </li>
-            <li class="flex justify-between">
-              <span class="font-medium">Top Speed:</span>
-              <span>135 mph</span>
-            </li>
-            <li class="flex justify-between">
-              <span class="font-medium">0-60 mph:</span>
-              <span>6.6 sec</span>
-            </li>
-          </ul>
-        </div>
+      <div class="container mx-auto p-8 h-full flex items-center justify-start">
+        <div class="card w-96 glass max-w-lg rounded-xl p-6 shadow-xl">
+          <h1 class="text-3xl lg:text-4xl font-semibold text-gray-800 mb-3">
+            Model Y
+          </h1>
+          <p class="text-lg text-gray-800 mb-6">
+            Experience the electrifying power and luxury of Model Y.
+          </p>
 
-        <!-- Vehicle Details -->
-        <div class="mt-8 bg-gray-100 p-4 rounded-lg">
-          <div class="font-bold">Vehicle Details</div>
-          <ul class="mt-2">
-            <li>Demo Vehicle</li>
-            <li>442 mile odometer</li>
-            <li>Red Multi-Coat Paint</li>
-            <li>20" Induction Wheels</li>
-            <li>Black and White Premium Interior</li>
-            <li>Autopilot</li>
-            <li>Five Seat Interior</li>
-          </ul>
+          <div class="text-gray-800 font-semibold text-xl mb-4">
+            Starting at <span class="text-3xl">$41,150</span>
+          </div>
+
+          <!-- Specs -->
+          <div class="grid grid-cols-2 gap-x-6 gap-y-3 text-gray-700 mb-6">
+            <div>Range (est.): <span class="font-semibold">242 mi</span></div>
+            <div>Top Speed: <span class="font-semibold">135 mph</span></div>
+            <div>
+              Acceleration: <span class="font-semibold">0-60 mph in 6.6s</span>
+            </div>
+            <!-- More specs -->
+          </div>
+
+          <div>
+            <button
+              class="w-full bg-black text-white font-semibold py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-gray-800"
+            >
+              Order Now
+            </button>
+          </div>
         </div>
+      </div>
+
+      <!-- Footer Section -->
+      <div class="container mx-auto p-8">
+        <FooterLogin />
       </div>
     </div>
   </div>
-</div>
+</Layout>

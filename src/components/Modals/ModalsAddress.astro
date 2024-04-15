@@ -31,6 +31,13 @@ let regiones = await getRegiones();
   <div class="modal-box">
     <h3 class="font-bold text-lg">Hello!</h3>
     <p class="py-4">Press ESC key or click the button below to close</p>
+    <!-- Close button -->
+    <button
+      class="absolute top-0 right-0 m-4 text-lg font-semibold"
+      onclick="document.getElementById('my_modal_1').close()"
+    >
+      ×
+    </button>
     <h3
       class="text-2xl md:text-3xl font-semibold text-gray-800 leading-tight tracking-tighter"
     >
@@ -147,6 +154,7 @@ let regiones = await getRegiones();
                   id="Direccion"
                   name="Direccion"
                   placeholder="Type here"
+                  required
                   class="input input-bordered w-full max-w-xs"
                 />
                 <div class="label">
@@ -157,7 +165,7 @@ let regiones = await getRegiones();
             </div>
           </div>
           <div class="modal-action mt-11 flex justify-start">
-            <button class="btn">Close</button>
+       
             <button
               type="submit"
               class="btn bg-blue-600 hover:bg-blue-700 text-white ml-2"

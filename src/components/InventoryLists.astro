@@ -1,45 +1,47 @@
 ---
-// Hacemos una solicitud a la API para obtener los datos
-const response = await fetch("http://localhost:3000/api/productos");
-let data = await response.json();
+// Asegúrate de que 'fetch' está disponible si estás en un entorno de Node.js <18
+
+// Función para obtener datos de los vehículos de tu API
+const getVehicles = async () => {
+  const response = await fetch('http://localhost:3000/api/vehiculos');
+  const data = await response.json();
+  return data;
+};
+
+// Espera a que los datos se obtengan antes de renderizar la página
+const vehicles = await getVehicles();
 ---
 
+<!-- Ahora puedes usar 'vehicles' para mostrar las tarjetas -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-  {
-    data.map(
-      (item: {
-        ProductoID: unknown;
-        NombreProducto: unknown;
-        Descripcion: unknown;
-        Precio: unknown;
-        Stock: unknown;
-        Categoria: unknown;
-      }) => (
-        <div class="bg-white rounded-lg shadow-lg p-6">
-          <div class="rounded-lg overflow-hidden">
-            <div class="px-4 py-2 bg-gray-800 text-white">
-              <h2 class="font-semibold text-xl">{item.NombreProducto}</h2>
-              <p class="text-sm">{item.Categoria}</p>
-            </div>
-
-            <div class="p-4">
-              <div class="flex justify-between items-center">
-                <div>
-                  <h3 class="text-lg font-semibold">${item.Precio}</h3>
-                  <p class="text-sm text-gray-600">Stock: {item.Stock}</p>
-                </div>
-                <div>
-                  <p class="text-sm">ID: {item.ProductoID}</p>
-                </div>
-              </div>
-
-              <div class="mt-4">
-                <p class="text-sm">{item.Descripcion}</p>
-              </div>
-            </div>
-          </div>
+  {vehicles.map((vehicle: { VehiculoID: any; Imagen: string; Modelo: unknown; Ano: unknown; Autonomia: unknown; CapacidadDeBateria: unknown; Potencia: unknown; Traccion: unknown; NumeroDeAsientos: unknown; ColorExterior: unknown; ColorInterior: unknown; OpcionesDeRuedas: unknown; PaqueteDeAutopiloto: any; Precio: unknown; }) => (
+    <div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-gray-400 h-64 w-full flex items-center justify-center">
+        <!-- Aquí deberías usar la propiedad 'Imagen' del vehículo si está disponible -->
+        <span class="text-white text-xl">{vehicle.Imagen ? '<img src="'+vehicle.Imagen+'" alt="'+vehicle.Modelo+'">' : 'Imagen del Vehículo'}</span>
+      </div>
+      <div class="p-5">
+        <h2 class="text-gray-900 text-xl font-medium mb-2">{vehicle.Modelo}</h2>
+        <p class="text-gray-600 text-base mb-4">
+          Año: {vehicle.Ano} | Autonomía: {vehicle.Autonomia}km | Batería: {vehicle.CapacidadDeBateria}kWh
+        </p>
+        <div class="text-gray-700 text-base space-y-2 mb-4">
+          <p>Potencia: {vehicle.Potencia}hp</p>
+          <p>Tracción: {vehicle.Traccion}</p>
+          <p>Asientos: {vehicle.NumeroDeAsientos}</p>
+          <p>Color Exterior: {vehicle.ColorExterior}</p>
+          <p>Interior: {vehicle.ColorInterior}</p>
+          <p>Ruedas: {vehicle.OpcionesDeRuedas}</p>
+          <p>Autopiloto: {vehicle.PaqueteDeAutopiloto ? 'Sí' : 'No'}</p>
+          <!-- Agregar más propiedades como se desee -->
         </div>
-      ),
-    )
-  }
+        <div class="flex items-center justify-between">
+          <span class="text-3xl font-bold text-gray-900">${vehicle.Precio}</span>
+          <a href="/order" target="__blank"><button class="px-5 py-2 border rounded text-gray-700 border-gray-700 hover:bg-gray-200">
+            Ver más
+          </button></a>
+        </div>
+      </div>
+    </div>
+  ))}
 </div>
